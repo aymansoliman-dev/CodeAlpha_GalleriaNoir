@@ -550,7 +550,7 @@ function performSearch() {
   query = newQuery;
   document.querySelector('.active.category')?.classList.remove('active');
   hideCategories();
-  window.localStorage.setItem('query', query);
+  window.sessionStorage.setItem('query', query);
   loadImages().catch(err => console.error('Error loading images:', err));
   searchInput.value = '';
 }
@@ -621,7 +621,7 @@ window.addEventListener('click', e => {
     document.querySelector('.active.category')?.classList.remove('active');
     target.classList.add('active');
     hideCategories();
-    window.localStorage.setItem('query', query);
+    window.sessionStorage.setItem('query', query);
     categoriesElement.setAttribute('inert', '');
     loadImages().catch(err => console.error('Error loading images:', err));
     return;
@@ -793,10 +793,10 @@ function initializeCanvasSystem() {
   container.style.cursor = "grab";
 }
 
-query = window.localStorage.getItem('query') || query;
-window.localStorage.setItem('query', query);
+query = window.sessionStorage.getItem('query') || query;
+window.sessionStorage.setItem('query', query);
 if (query.trim() === 'Galleria Noir') query = 'Galleria Noir';
-document.querySelector(`.category[data-keyword=\"${query}\"]`)?.classList.add('active');
+document.querySelector(`.category[data-keyword="${query}"]`)?.classList.add('active');
 
 loadImages().catch(err => console.error('Error loading images:', err));
 
